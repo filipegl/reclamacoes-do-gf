@@ -12,9 +12,14 @@ library(dplyr)
 ```
 
 ```{r}
-setwd('/home/rerissondcsm/reclamacoes-do-gf')
+setwd('/home/filipegl/Documentos/metodologia/reclamacoes-do-gf')
 reclamacoes <- read.csv("data/1-reclamacoes-selecionadas/reclamacoes-avaliadas.csv")
 reclamacoes <- reclamacoes %>% mutate(length = str_length(reclamacao))
+avaliacoes <- read_csv("data/3-avaliacao-humana/avaliacoes-20180610.csv")
+avaliacoes <- avaliacoes %>% 
+              select(avaliador = `Matricula`, 
+                      id = `ID da reclamação`, 
+                      insatisfacao = `Grau de insatisfação`)
 ```
 
 ```{r}
@@ -23,6 +28,19 @@ media_orgaos <- aggregate(reclamacoes$length, list(orgao = reclamacoes$orgao), m
 media_orgaos %>% View
 barplot(media_orgaos$x, main='Média dos tamanhos das reclamações por orgão', names.arg = media_orgaos$orgao)
 ```
+
+
+
+Questao 4
+```{r}
+avaliacoes %>% 
+  group_by(id) %>% 
+  count() %>%
+  ungroup() %>% 
+  summarise(media = mean(n), 
+        mediana = median(n))
+```
+
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
 
