@@ -11,17 +11,16 @@ library(ggplot2)
 ```
 
 ```{r}
-setwd('/home/thierrysb/Documentos/projmeto/reclamacoes-do-gf')
+setwd('/home/rerissondcsm/reclamacoes-do-gf')
 reclamacoes <- read.csv("data/1-reclamacoes-selecionadas/reclamacoes-avaliadas.csv")
 reclamacoes <- reclamacoes %>% mutate(length = str_length(reclamacao))
 ```
 
 ```{r}
-reclamacoes %>% 
-  filter(complete.cases(.)) %>% 
-  ggplot(aes(fill = orgao, x = length), na.rm = TRUE) + 
-  geom_histogram(binwidth = 50, na.rm = TRUE) + 
-  facet_grid(orgao ~ .)
+
+media_orgaos <- aggregate(reclamacoes$length, list(orgao = reclamacoes$orgao), mean)
+media_orgaos %>% View
+barplot(media_orgaos$x, main='Média dos tamanhos das reclamações por orgão', names.arg = media_orgaos$orgao)
 ```
 ```{r}
 x <- rep(1:5, each=7)
@@ -35,9 +34,6 @@ barplot(agrupar$media, names = agrupar$mediana,
   xlab = "Nível de insatisfação", ylab = "Tamanho das reclamações",
   main = "Média das reclamações por nível de insatisfação")
 ```
-
-
-
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
