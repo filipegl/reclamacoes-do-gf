@@ -83,6 +83,10 @@ avaliacoes %>% group_by(id) %>%
             mediana = median(insatisfacao)) %>% 
   group_by(range) %>% count()
 
+# quantas reclamações tem discordância maior que 2?
+avaliacoes %>% group_by(id) %>% 
+  summarise(range = max(insatisfacao) - min(insatisfacao)) %>% 
+  filter(range > 2) %>% count()
 
 # que reclamações são essas?
 avaliacoes %>% group_by(id) %>% 
@@ -111,17 +115,13 @@ avaliacoes %>% group_by(`ID da reclamação`) %>%
   filter(range > 2) %>% count()
 
 
-
 ## Será que os tamanhos das reclamações ou títulos tem alguma relação com o nível de insatisfação?
-reclamacoes %>% ggplot(aes(x=median(x = reclamacoes$reclamacão.length), y=str_length(reclamação))) + geom_point()
-##reclamacoes %>% ggplot(aes(x=numero.de.capslock, y=numero.de.capslock)) + geom_point()
-reclamacoes %>% ggplot(aes(x=median(x = reclamacoes$titulo.length), y=str_length(título))) + geom_point()
+reclamacoes %>% ggplot(aes(x=mediana, y=reclamacao.length)) + geom_point()
+reclamacoes %>% ggplot(aes(x=mediana, y=numero.de.capslock)) + geom_point()
+reclamacoes %>% ggplot(aes(x=mediana, y=titulo.length)) + geom_point()
 
-
-##
 # Olhando as variáveis não encontramos relações fortes entre elas
 library(GGally)
 reclamacoes %>% 
   select(orgao, titulo.length, reclamacao.length, numero.de.capslock, mediana) %>% 
   ggpairs()
-
