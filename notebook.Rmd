@@ -11,7 +11,7 @@ library(ggplot2)
 ```
 
 ```{r}
-setwd('/home/rerissondcsm/reclamacoes-do-gf')
+setwd('/home/thierrysb/Documentos/projmeto/reclamacoes-do-gf')
 reclamacoes <- read.csv("data/1-reclamacoes-selecionadas/reclamacoes-avaliadas.csv")
 reclamacoes <- reclamacoes %>% mutate(length = str_length(reclamacao))
 ```
@@ -23,6 +23,20 @@ reclamacoes %>%
   geom_histogram(binwidth = 50, na.rm = TRUE) + 
   facet_grid(orgao ~ .)
 ```
+```{r}
+x <- rep(1:5, each=7)
+y <- rnorm(10*7)
+boxplot(length~mediana,data=reclamacoes,col=rainbow(length(unique(x))), main="Média das reclamações por nível de insatisfação",
+   xlab="Nível de insatisfação", ylab="Tamanho das reclamações") 
+
+agrupar <- reclamacoes %>% group_by(reclamacoes$mediana) %>% summarise(media = mean(length)) 
+
+barplot(agrupar$media, names = agrupar$mediana,
+  xlab = "Nível de insatisfação", ylab = "Tamanho das reclamações",
+  main = "Média das reclamações por nível de insatisfação")
+```
+
+
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
