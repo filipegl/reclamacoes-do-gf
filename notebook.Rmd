@@ -19,13 +19,9 @@ reclamacoes <- reclamacoes %>% mutate(length = str_length(reclamacao))
 
 ```{r}
 
-means <- 
+media_orgaos <- aggregate(reclamacoes$length, list(orgao = reclamacoes$orgao), mean)
+media_orgaos %>% View
 
-reclamacoes %>% 
-  filter(complete.cases(.)) %>% 
-  ggplot(aes(fill = orgao, x = length), na.rm = TRUE) + 
-  geom_histogram(binwidth = 50, na.rm = TRUE) + 
-  facet_grid(orgao ~ .)
 ```
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
