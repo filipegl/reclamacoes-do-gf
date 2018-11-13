@@ -3,11 +3,12 @@ title: "R Notebook"
 output: html_notebook
 ---
 ```{r}
-deps = c("tidyverse", "rvest", "stringr", "here", "magrittr")
+deps = c("tidyverse", "rvest", "stringr", "here", "magrittr", "dplyr")
 install.packages(deps)
 library(tidyverse)
 library(magrittr)
 library(ggplot2)
+library(dplyr)
 ```
 
 ```{r}
@@ -17,6 +18,9 @@ reclamacoes <- reclamacoes %>% mutate(length = str_length(reclamacao))
 ```
 
 ```{r}
+
+means <- 
+
 reclamacoes %>% 
   filter(complete.cases(.)) %>% 
   ggplot(aes(fill = orgao, x = length), na.rm = TRUE) + 
@@ -24,13 +28,7 @@ reclamacoes %>%
   facet_grid(orgao ~ .)
 ```
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
-
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
-
-```{r}
-plot(cars)
-```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
 

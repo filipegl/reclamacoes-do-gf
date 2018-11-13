@@ -178,130 +178,13 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGVwcyA9IGMoXCJ0aWR5dmVyc2VcIiwgXCJydmVzdFwiLCBcInN0cmluZ3JcIiwgXCJoZXJlXCIsIFwibWFncml0dHJcIilcbmluc3RhbGwucGFja2FnZXMoZGVwcylcbmBgYCJ9 -->
-<pre class="r"><code>deps = c(&quot;tidyverse&quot;, &quot;rvest&quot;, &quot;stringr&quot;, &quot;here&quot;, &quot;magrittr&quot;)
-install.packages(deps)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSW5zdGFsbGluZyBwYWNrYWdlcyBpbnRvIOKAmC9ob21lL3Jlcmlzc29uZGNzbS9SL3g4Nl82NC1wYy1saW51eC1nbnUtbGlicmFyeS8zLjTigJlcbihhcyDigJhsaWLigJkgaXMgdW5zcGVjaWZpZWQpXG50ZW50YW5kbyBhIFVSTCAnaHR0cHM6Ly9jbG91ZC5yLXByb2plY3Qub3JnL3NyYy9jb250cmliL3RpZHl2ZXJzZV8xLjIuMS50YXIuZ3onXG5Db250ZW50IHR5cGUgJ2FwcGxpY2F0aW9uL3gtZ3ppcCcgbGVuZ3RoIDYxNjQ3IGJ5dGVzICg2MCBLQilcbj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG5kb3dubG9hZGVkIDYwIEtCXG5cbnRlbnRhbmRvIGEgVVJMICdodHRwczovL2Nsb3VkLnItcHJvamVjdC5vcmcvc3JjL2NvbnRyaWIvcnZlc3RfMC4zLjIudGFyLmd6J1xuQ29udGVudCB0eXBlICdhcHBsaWNhdGlvbi94LWd6aXAnIGxlbmd0aCAxNTk3MTM3IGJ5dGVzICgxLjUgTUIpXG49PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuZG93bmxvYWRlZCAxLjUgTUJcblxudGVudGFuZG8gYSBVUkwgJ2h0dHBzOi8vY2xvdWQuci1wcm9qZWN0Lm9yZy9zcmMvY29udHJpYi9zdHJpbmdyXzEuMy4xLnRhci5neidcbkNvbnRlbnQgdHlwZSAnYXBwbGljYXRpb24veC1nemlwJyBsZW5ndGggMTE5MTU2IGJ5dGVzICgxMTYgS0IpXG49PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuZG93bmxvYWRlZCAxMTYgS0JcblxudGVudGFuZG8gYSBVUkwgJ2h0dHBzOi8vY2xvdWQuci1wcm9qZWN0Lm9yZy9zcmMvY29udHJpYi9oZXJlXzAuMS50YXIuZ3onXG5Db250ZW50IHR5cGUgJ2FwcGxpY2F0aW9uL3gtZ3ppcCcgbGVuZ3RoIDM2MDcgYnl0ZXNcbj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG5kb3dubG9hZGVkIDM2MDcgYnl0ZXNcblxudGVudGFuZG8gYSBVUkwgJ2h0dHBzOi8vY2xvdWQuci1wcm9qZWN0Lm9yZy9zcmMvY29udHJpYi9tYWdyaXR0cl8xLjUudGFyLmd6J1xuQ29udGVudCB0eXBlICdhcHBsaWNhdGlvbi94LWd6aXAnIGxlbmd0aCAyMDA1MDQgYnl0ZXMgKDE5NSBLQilcbj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG5kb3dubG9hZGVkIDE5NSBLQlxuXG4qIGluc3RhbGxpbmcgKnNvdXJjZSogcGFja2FnZSDigJhoZXJl4oCZIC4uLlxuKiogcGFja2FnZSDigJhoZXJl4oCZIHN1Y2Nlc3NmdWxseSB1bnBhY2tlZCBhbmQgTUQ1IHN1bXMgY2hlY2tlZFxuKiogUlxuKiogcHJlcGFyaW5nIHBhY2thZ2UgZm9yIGxhenkgbG9hZGluZ1xuKiogaGVscFxuKioqIGluc3RhbGxpbmcgaGVscCBpbmRpY2VzXG4qKiBidWlsZGluZyBwYWNrYWdlIGluZGljZXNcbioqIHRlc3RpbmcgaWYgaW5zdGFsbGVkIHBhY2thZ2UgY2FuIGJlIGxvYWRlZFxuKiBET05FIChoZXJlKVxuKiBpbnN0YWxsaW5nICpzb3VyY2UqIHBhY2thZ2Ug4oCYbWFncml0dHLigJkgLi4uXG4qKiBwYWNrYWdlIOKAmG1hZ3JpdHRy4oCZIHN1Y2Nlc3NmdWxseSB1bnBhY2tlZCBhbmQgTUQ1IHN1bXMgY2hlY2tlZFxuKiogUlxuKiogaW5zdFxuKiogYnl0ZS1jb21waWxlIGFuZCBwcmVwYXJlIHBhY2thZ2UgZm9yIGxhenkgbG9hZGluZ1xuKiogaGVscFxuKioqIGluc3RhbGxpbmcgaGVscCBpbmRpY2VzXG4qKiBidWlsZGluZyBwYWNrYWdlIGluZGljZXNcbioqIGluc3RhbGxpbmcgdmlnbmV0dGVzXG4qKiB0ZXN0aW5nIGlmIGluc3RhbGxlZCBwYWNrYWdlIGNhbiBiZSBsb2FkZWRcbiogRE9ORSAobWFncml0dHIpXG4qIGluc3RhbGxpbmcgKnNvdXJjZSogcGFja2FnZSDigJhydmVzdOKAmSAuLi5cbioqIHBhY2thZ2Ug4oCYcnZlc3TigJkgc3VjY2Vzc2Z1bGx5IHVucGFja2VkIGFuZCBNRDUgc3VtcyBjaGVja2VkXG4qKiBSXG4qKiBkZW1vXG4qKiBpbnN0XG4qKiBwcmVwYXJpbmcgcGFja2FnZSBmb3IgbGF6eSBsb2FkaW5nXG4qKiBoZWxwXG4qKiogaW5zdGFsbGluZyBoZWxwIGluZGljZXNcbioqIGJ1aWxkaW5nIHBhY2thZ2UgaW5kaWNlc1xuKiogaW5zdGFsbGluZyB2aWduZXR0ZXNcbioqIHRlc3RpbmcgaWYgaW5zdGFsbGVkIHBhY2thZ2UgY2FuIGJlIGxvYWRlZFxuKiBET05FIChydmVzdClcbiogaW5zdGFsbGluZyAqc291cmNlKiBwYWNrYWdlIOKAmHN0cmluZ3LigJkgLi4uXG4qKiBwYWNrYWdlIOKAmHN0cmluZ3LigJkgc3VjY2Vzc2Z1bGx5IHVucGFja2VkIGFuZCBNRDUgc3VtcyBjaGVja2VkXG4qKiBSXG4qKiBkYXRhXG4qKiogbW92aW5nIGRhdGFzZXRzIHRvIGxhenlsb2FkIERCXG4qKiBpbnN0XG4qKiBwcmVwYXJpbmcgcGFja2FnZSBmb3IgbGF6eSBsb2FkaW5nXG4qKiBoZWxwXG4qKiogaW5zdGFsbGluZyBoZWxwIGluZGljZXNcbioqKiBjb3B5aW5nIGZpZ3VyZXNcbioqIGJ1aWxkaW5nIHBhY2thZ2UgaW5kaWNlc1xuKiogaW5zdGFsbGluZyB2aWduZXR0ZXNcbioqIHRlc3RpbmcgaWYgaW5zdGFsbGVkIHBhY2thZ2UgY2FuIGJlIGxvYWRlZFxuKiBET05FIChzdHJpbmdyKVxuKiBpbnN0YWxsaW5nICpzb3VyY2UqIHBhY2thZ2Ug4oCYdGlkeXZlcnNl4oCZIC4uLlxuKiogcGFja2FnZSDigJh0aWR5dmVyc2XigJkgc3VjY2Vzc2Z1bGx5IHVucGFja2VkIGFuZCBNRDUgc3VtcyBjaGVja2VkXG4qKiBSXG4qKiBpbnN0XG4qKiBwcmVwYXJpbmcgcGFja2FnZSBmb3IgbGF6eSBsb2FkaW5nXG4qKiBoZWxwXG4qKiogaW5zdGFsbGluZyBoZWxwIGluZGljZXNcbioqKiBjb3B5aW5nIGZpZ3VyZXNcbioqIGJ1aWxkaW5nIHBhY2thZ2UgaW5kaWNlc1xuKiogaW5zdGFsbGluZyB2aWduZXR0ZXNcbioqIHRlc3RpbmcgaWYgaW5zdGFsbGVkIHBhY2thZ2UgY2FuIGJlIGxvYWRlZFxuKiBET05FICh0aWR5dmVyc2UpXG5cblRoZSBkb3dubG9hZGVkIHNvdXJjZSBwYWNrYWdlcyBhcmUgaW5cblx04oCYL3RtcC9SdG1wWGdHVXNaL2Rvd25sb2FkZWRfcGFja2FnZXPigJlcbiJ9 -->
-<pre><code>Installing packages into ‘/home/rerissondcsm/R/x86_64-pc-linux-gnu-library/3.4’
-(as ‘lib’ is unspecified)
-tentando a URL 'https://cloud.r-project.org/src/contrib/tidyverse_1.2.1.tar.gz'
-Content type 'application/x-gzip' length 61647 bytes (60 KB)
-==================================================
-downloaded 60 KB
-
-tentando a URL 'https://cloud.r-project.org/src/contrib/rvest_0.3.2.tar.gz'
-Content type 'application/x-gzip' length 1597137 bytes (1.5 MB)
-==================================================
-downloaded 1.5 MB
-
-tentando a URL 'https://cloud.r-project.org/src/contrib/stringr_1.3.1.tar.gz'
-Content type 'application/x-gzip' length 119156 bytes (116 KB)
-==================================================
-downloaded 116 KB
-
-tentando a URL 'https://cloud.r-project.org/src/contrib/here_0.1.tar.gz'
-Content type 'application/x-gzip' length 3607 bytes
-==================================================
-downloaded 3607 bytes
-
-tentando a URL 'https://cloud.r-project.org/src/contrib/magrittr_1.5.tar.gz'
-Content type 'application/x-gzip' length 200504 bytes (195 KB)
-==================================================
-downloaded 195 KB
-
-* installing *source* package ‘here’ ...
-** package ‘here’ successfully unpacked and MD5 sums checked
-** R
-** preparing package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded
-* DONE (here)
-* installing *source* package ‘magrittr’ ...
-** package ‘magrittr’ successfully unpacked and MD5 sums checked
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded
-* DONE (magrittr)
-* installing *source* package ‘rvest’ ...
-** package ‘rvest’ successfully unpacked and MD5 sums checked
-** R
-** demo
-** inst
-** preparing package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded
-* DONE (rvest)
-* installing *source* package ‘stringr’ ...
-** package ‘stringr’ successfully unpacked and MD5 sums checked
-** R
-** data
-*** moving datasets to lazyload DB
-** inst
-** preparing package for lazy loading
-** help
-*** installing help indices
-*** copying figures
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded
-* DONE (stringr)
-* installing *source* package ‘tidyverse’ ...
-** package ‘tidyverse’ successfully unpacked and MD5 sums checked
-** R
-** inst
-** preparing package for lazy loading
-** help
-*** installing help indices
-*** copying figures
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded
-* DONE (tidyverse)
-
-The downloaded source packages are in
-    ‘/tmp/RtmpXgGUsZ/downloaded_packages’</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
-<pre class="r"><code>library(tidyverse)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXHUwMDFiWzMwbeKUgOKUgCBcdTAwMWJbMW1BdHRhY2hpbmcgcGFja2FnZXNcdTAwMWJbMjJtIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCB0aWR5dmVyc2UgMS4yLjEg4pSA4pSAXHUwMDFiWzM5bVxuXHUwMDFiWzMwbVx1MDAxYlszMm3inJRcdTAwMWJbMzBtIFx1MDAxYlszNG1nZ3Bsb3QyXHUwMDFiWzMwbSAzLjEuMCAgICAgXHUwMDFiWzMybeKclFx1MDAxYlszMG0gXHUwMDFiWzM0bXB1cnJyICBcdTAwMWJbMzBtIDAuMi41XG5cdTAwMWJbMzJt4pyUXHUwMDFiWzMwbSBcdTAwMWJbMzRtdGliYmxlIFx1MDAxYlszMG0gMS40LjIgICAgIFx1MDAxYlszMm3inJRcdTAwMWJbMzBtIFx1MDAxYlszNG1kcGx5ciAgXHUwMDFiWzMwbSAwLjcuN1xuXHUwMDFiWzMybeKclFx1MDAxYlszMG0gXHUwMDFiWzM0bXRpZHlyICBcdTAwMWJbMzBtIDAuOC4yICAgICBcdTAwMWJbMzJt4pyUXHUwMDFiWzMwbSBcdTAwMWJbMzRtc3RyaW5nclx1MDAxYlszMG0gMS4zLjFcblx1MDAxYlszMm3inJRcdTAwMWJbMzBtIFx1MDAxYlszNG1yZWFkciAgXHUwMDFiWzMwbSAxLjEuMSAgICAgXHUwMDFiWzMybeKclFx1MDAxYlszMG0gXHUwMDFiWzM0bWZvcmNhdHNcdTAwMWJbMzBtIDAuMy4wXHUwMDFiWzM5bVxuXHUwMDFiWzMwbeKUgOKUgCBcdTAwMWJbMW1Db25mbGljdHNcdTAwMWJbMjJtIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCB0aWR5dmVyc2VfY29uZmxpY3RzKCkg4pSA4pSAXG5cdTAwMWJbMzFt4pyWXHUwMDFiWzMwbSBcdTAwMWJbMzRtZHBseXJcdTAwMWJbMzBtOjpcdTAwMWJbMzJtZmlsdGVyKClcdTAwMWJbMzBtIG1hc2tzIFx1MDAxYlszNG1zdGF0c1x1MDAxYlszMG06OmZpbHRlcigpXG5cdTAwMWJbMzFt4pyWXHUwMDFiWzMwbSBcdTAwMWJbMzRtZHBseXJcdTAwMWJbMzBtOjpcdTAwMWJbMzJtbGFnKClcdTAwMWJbMzBtICAgIG1hc2tzIFx1MDAxYlszNG1zdGF0c1x1MDAxYlszMG06OmxhZygpXHUwMDFiWzM5bVxuIn0= -->
-<pre><code>[30m── [1mAttaching packages[22m ──────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──[39m
-[30m[32m✔[30m [34mggplot2[30m 3.1.0     [32m✔[30m [34mpurrr  [30m 0.2.5
-[32m✔[30m [34mtibble [30m 1.4.2     [32m✔[30m [34mdplyr  [30m 0.7.7
-[32m✔[30m [34mtidyr  [30m 0.8.2     [32m✔[30m [34mstringr[30m 1.3.1
-[32m✔[30m [34mreadr  [30m 1.1.1     [32m✔[30m [34mforcats[30m 0.3.0[39m
-[30m── [1mConflicts[22m ─────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-[31m✖[30m [34mdplyr[30m::[32mfilter()[30m masks [34mstats[30m::filter()
-[31m✖[30m [34mdplyr[30m::[32mlag()[30m    masks [34mstats[30m::lag()[39m</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShtYWdyaXR0cilcbmBgYCJ9 -->
-<pre class="r"><code>library(magrittr)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYbWFncml0dHLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g4oCYcGFja2FnZTpwdXJycuKAmTpcblxuICAgIHNldF9uYW1lc1xuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnRpZHly4oCZOlxuXG4gICAgZXh0cmFjdFxuIn0= -->
-<pre><code>
-Attaching package: ‘magrittr’
-
-The following object is masked from ‘package:purrr’:
-
-    set_names
-
-The following object is masked from ‘package:tidyr’:
-
-    extract</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnZ3Bsb3QyKVxuYGBgIn0= -->
-<pre class="r"><code>library(ggplot2)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGVwcyA9IGMoXCJ0aWR5dmVyc2VcIiwgXCJydmVzdFwiLCBcInN0cmluZ3JcIiwgXCJoZXJlXCIsIFwibWFncml0dHJcIiwgXCJkcGx5clwiKVxuaW5zdGFsbC5wYWNrYWdlcyhkZXBzKVxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KG1hZ3JpdHRyKVxubGlicmFyeShnZ3Bsb3QyKVxubGlicmFyeShkcGx5cilcbmBgYCJ9 -->
+<pre class="r"><code>deps = c(&quot;tidyverse&quot;, &quot;rvest&quot;, &quot;stringr&quot;, &quot;here&quot;, &quot;magrittr&quot;, &quot;dplyr&quot;)
+install.packages(deps)
+library(tidyverse)
+library(magrittr)
+library(ggplot2)
+library(dplyr)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -316,35 +199,25 @@ reclamacoes &lt;- reclamacoes %&gt;% mutate(length = str_length(reclamacao))</co
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVjbGFtYWNvZXMgJT4lIFxuICBmaWx0ZXIoY29tcGxldGUuY2FzZXMoLikpICU+JSBcbiAgZ2dwbG90KGFlcyhmaWxsID0gb3JnYW8sIHggPSBsZW5ndGgpLCBuYS5ybSA9IFRSVUUpICsgXG4gIGdlb21faGlzdG9ncmFtKGJpbndpZHRoID0gNTAsIG5hLnJtID0gVFJVRSkgKyBcbiAgZmFjZXRfZ3JpZChvcmdhbyB+IC4pXG5cbmBgYCJ9 -->
-<pre class="r"><code>reclamacoes %&gt;% 
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5tZWFucyA8LSBcblxucmVjbGFtYWNvZXMgJT4lIFxuICBmaWx0ZXIoY29tcGxldGUuY2FzZXMoLikpICU+JSBcbiAgZ2dwbG90KGFlcyhmaWxsID0gb3JnYW8sIHggPSBsZW5ndGgpLCBuYS5ybSA9IFRSVUUpICsgXG4gIGdlb21faGlzdG9ncmFtKGJpbndpZHRoID0gNTAsIG5hLnJtID0gVFJVRSkgKyBcbiAgZmFjZXRfZ3JpZChvcmdhbyB+IC4pXG5gYGAifQ== -->
+<pre class="r"><code>
+means &lt;- 
+
+reclamacoes %&gt;% 
   filter(complete.cases(.)) %&gt;% 
   ggplot(aes(fill = orgao, x = length), na.rm = TRUE) + 
   geom_histogram(binwidth = 50, na.rm = TRUE) + 
-  facet_grid(orgao ~ .)
-</code></pre>
+  facet_grid(orgao ~ .)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gZ2dwbG90KC4sIGFlcyhmaWxsID0gb3JnYW8sIHggPSBsZW5ndGgpLCBuYS5ybSA9IFRSVUUpIDogXG4gIG7Do28gZm9pIHBvc3PDrXZlbCBlbmNvbnRyYXIgYSBmdW7Dp8OjbyBcImdncGxvdFwiXG4ifQ== -->
-<pre><code>Error in ggplot(., aes(fill = orgao, x = length), na.rm = TRUE) : 
-  não foi possível encontrar a função &quot;ggplot&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> Notebook. When you execute code within the notebook, the results appear beneath the code.</p>
 <p>Try executing this chunk by clicking the <em>Run</em> button within the chunk or by placing your cursor inside it and pressing <em>Ctrl+Shift+Enter</em>.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChjYXJzKVxuYGBgIn0= -->
-<pre class="r"><code>plot(cars)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
 <p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Ctrl+Alt+I</em>.</p>
 <p>When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the <em>Preview</em> button or press <em>Ctrl+Shift+K</em> to preview the HTML file).</p>
 <p>The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.</p>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQpgYGB7cn0KZGVwcyA9IGMoInRpZHl2ZXJzZSIsICJydmVzdCIsICJzdHJpbmdyIiwgImhlcmUiLCAibWFncml0dHIiKQppbnN0YWxsLnBhY2thZ2VzKGRlcHMpCmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KG1hZ3JpdHRyKQpsaWJyYXJ5KGdncGxvdDIpCmBgYAoKYGBge3J9CnNldHdkKCcvaG9tZS9yZXJpc3NvbmRjc20vcmVjbGFtYWNvZXMtZG8tZ2YnKQpyZWNsYW1hY29lcyA8LSByZWFkLmNzdigiZGF0YS8xLXJlY2xhbWFjb2VzLXNlbGVjaW9uYWRhcy9yZWNsYW1hY29lcy1hdmFsaWFkYXMuY3N2IikKcmVjbGFtYWNvZXMgPC0gcmVjbGFtYWNvZXMgJT4lIG11dGF0ZShsZW5ndGggPSBzdHJfbGVuZ3RoKHJlY2xhbWFjYW8pKQpgYGAKCmBgYHtyfQpyZWNsYW1hY29lcyAlPiUgCiAgZmlsdGVyKGNvbXBsZXRlLmNhc2VzKC4pKSAlPiUgCiAgZ2dwbG90KGFlcyhmaWxsID0gb3JnYW8sIHggPSBsZW5ndGgpLCBuYS5ybSA9IFRSVUUpICsgCiAgZ2VvbV9oaXN0b2dyYW0oYmlud2lkdGggPSA1MCwgbmEucm0gPSBUUlVFKSArIAogIGZhY2V0X2dyaWQob3JnYW8gfiAuKQpgYGAKClRoaXMgaXMgYW4gW1IgTWFya2Rvd25dKGh0dHA6Ly9ybWFya2Rvd24ucnN0dWRpby5jb20pIE5vdGVib29rLiBXaGVuIHlvdSBleGVjdXRlIGNvZGUgd2l0aGluIHRoZSBub3RlYm9vaywgdGhlIHJlc3VsdHMgYXBwZWFyIGJlbmVhdGggdGhlIGNvZGUuIAoKVHJ5IGV4ZWN1dGluZyB0aGlzIGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqUnVuKiBidXR0b24gd2l0aGluIHRoZSBjaHVuayBvciBieSBwbGFjaW5nIHlvdXIgY3Vyc29yIGluc2lkZSBpdCBhbmQgcHJlc3NpbmcgKkN0cmwrU2hpZnQrRW50ZXIqLiAKCmBgYHtyfQpwbG90KGNhcnMpCmBgYAoKQWRkIGEgbmV3IGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqSW5zZXJ0IENodW5rKiBidXR0b24gb24gdGhlIHRvb2xiYXIgb3IgYnkgcHJlc3NpbmcgKkN0cmwrQWx0K0kqLgoKV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDdHJsK1NoaWZ0K0sqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuCgpUaGUgcHJldmlldyBzaG93cyB5b3UgYSByZW5kZXJlZCBIVE1MIGNvcHkgb2YgdGhlIGNvbnRlbnRzIG9mIHRoZSBlZGl0b3IuIENvbnNlcXVlbnRseSwgdW5saWtlICpLbml0KiwgKlByZXZpZXcqIGRvZXMgbm90IHJ1biBhbnkgUiBjb2RlIGNodW5rcy4gSW5zdGVhZCwgdGhlIG91dHB1dCBvZiB0aGUgY2h1bmsgd2hlbiBpdCB3YXMgbGFzdCBydW4gaW4gdGhlIGVkaXRvciBpcyBkaXNwbGF5ZWQuCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQpgYGB7cn0KZGVwcyA9IGMoInRpZHl2ZXJzZSIsICJydmVzdCIsICJzdHJpbmdyIiwgImhlcmUiLCAibWFncml0dHIiLCAiZHBseXIiKQppbnN0YWxsLnBhY2thZ2VzKGRlcHMpCmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KG1hZ3JpdHRyKQpsaWJyYXJ5KGdncGxvdDIpCmxpYnJhcnkoZHBseXIpCmBgYAoKYGBge3J9CnNldHdkKCcvaG9tZS9yZXJpc3NvbmRjc20vcmVjbGFtYWNvZXMtZG8tZ2YnKQpyZWNsYW1hY29lcyA8LSByZWFkLmNzdigiZGF0YS8xLXJlY2xhbWFjb2VzLXNlbGVjaW9uYWRhcy9yZWNsYW1hY29lcy1hdmFsaWFkYXMuY3N2IikKcmVjbGFtYWNvZXMgPC0gcmVjbGFtYWNvZXMgJT4lIG11dGF0ZShsZW5ndGggPSBzdHJfbGVuZ3RoKHJlY2xhbWFjYW8pKQpgYGAKCmBgYHtyfQoKbWVhbnMgPC0gCgpyZWNsYW1hY29lcyAlPiUgCiAgZmlsdGVyKGNvbXBsZXRlLmNhc2VzKC4pKSAlPiUgCiAgZ2dwbG90KGFlcyhmaWxsID0gb3JnYW8sIHggPSBsZW5ndGgpLCBuYS5ybSA9IFRSVUUpICsgCiAgZ2VvbV9oaXN0b2dyYW0oYmlud2lkdGggPSA1MCwgbmEucm0gPSBUUlVFKSArIAogIGZhY2V0X2dyaWQob3JnYW8gfiAuKQpgYGAKClRyeSBleGVjdXRpbmcgdGhpcyBjaHVuayBieSBjbGlja2luZyB0aGUgKlJ1biogYnV0dG9uIHdpdGhpbiB0aGUgY2h1bmsgb3IgYnkgcGxhY2luZyB5b3VyIGN1cnNvciBpbnNpZGUgaXQgYW5kIHByZXNzaW5nICpDdHJsK1NoaWZ0K0VudGVyKi4gCgpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ3RybCtBbHQrSSouCgpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkN0cmwrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4KClRoZSBwcmV2aWV3IHNob3dzIHlvdSBhIHJlbmRlcmVkIEhUTUwgY29weSBvZiB0aGUgY29udGVudHMgb2YgdGhlIGVkaXRvci4gQ29uc2VxdWVudGx5LCB1bmxpa2UgKktuaXQqLCAqUHJldmlldyogZG9lcyBub3QgcnVuIGFueSBSIGNvZGUgY2h1bmtzLiBJbnN0ZWFkLCB0aGUgb3V0cHV0IG9mIHRoZSBjaHVuayB3aGVuIGl0IHdhcyBsYXN0IHJ1biBpbiB0aGUgZWRpdG9yIGlzIGRpc3BsYXllZC4K</div>
 
 
 
