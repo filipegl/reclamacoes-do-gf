@@ -2,18 +2,28 @@
 title: "R Notebook"
 output: html_notebook
 ---
-
-deps = c("tidyverse", "rvest", "stringr", "here")
+```{r}
+deps = c("tidyverse", "rvest", "stringr", "here", "magrittr")
 install.packages(deps)
 library(tidyverse)
+library(magrittr)
+```
 
-setwd('/home/rerisson/Documentos/Repositórios Git/reclamacoes-do-gf')
+```{r}
+setwd('/home/rerissondcsm/reclamacoes-do-gf')
 
-reclamacoes <- read.csv("reclamacoes-avaliadas.csv")
+reclamacoes <- read.csv("data/1-reclamacoes-selecionadas/reclamacoes-avaliadas.csv")
 
-reclamacoes <- reclamacoes %>% mutate(reclamacao.length = str_length(reclamacao))
+reclamacoes <- reclamacoes %>% mutate(length = str_length(reclamacao))
 
 View(reclamacoes)
+
+reclamacoes %>% 
+  filter(complete.cases(.)) %>% 
+  ggplot(aes(fill = orgao, x = length), na.rm = TRUE) + 
+  geom_histogram(binwidth = 50, na.rm = TRUE) + 
+  facet_grid(orgao ~ .)
+```
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 

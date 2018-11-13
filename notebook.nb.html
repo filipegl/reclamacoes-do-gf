@@ -176,11 +176,35 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
-<p>deps = c(“tidyverse”, “rvest”, “stringr”, “here”) install.packages(deps) library(tidyverse)</p>
-<p>setwd(‘/home/rerisson/Documentos/Repositórios Git/reclamacoes-do-gf’)</p>
-<p>reclamacoes &lt;- read.csv(“reclamacoes-avaliadas.csv”)</p>
-<p>reclamacoes &lt;- reclamacoes %&gt;% mutate(reclamacao.length = str_length(reclamacao))</p>
-<p>View(reclamacoes)</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGVwcyA9IGMoXCJ0aWR5dmVyc2VcIiwgXCJydmVzdFwiLCBcInN0cmluZ3JcIiwgXCJoZXJlXCIsIFwibWFncml0dHJcIilcbmluc3RhbGwucGFja2FnZXMoZGVwcylcbmxpYnJhcnkodGlkeXZlcnNlKVxubGlicmFyeShtYWdyaXR0cilcbmBgYCJ9 -->
+<pre class="r"><code>deps = c(&quot;tidyverse&quot;, &quot;rvest&quot;, &quot;stringr&quot;, &quot;here&quot;, &quot;magrittr&quot;)
+install.packages(deps)
+library(tidyverse)
+library(magrittr)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0d2QoJy9ob21lL3Jlcmlzc29uZGNzbS9yZWNsYW1hY29lcy1kby1nZicpXG5cbnJlY2xhbWFjb2VzIDwtIHJlYWQuY3N2KFwiZGF0YS8xLXJlY2xhbWFjb2VzLXNlbGVjaW9uYWRhcy9yZWNsYW1hY29lcy1hdmFsaWFkYXMuY3N2XCIpXG5cbnJlY2xhbWFjb2VzIDwtIHJlY2xhbWFjb2VzICU+JSBtdXRhdGUobGVuZ3RoID0gc3RyX2xlbmd0aChyZWNsYW1hY2FvKSlcblxuVmlldyhyZWNsYW1hY29lcylcblxucmVjbGFtYWNvZXMgJT4lIFxuICBmaWx0ZXIoY29tcGxldGUuY2FzZXMoLikpICU+JSBcbiAgZ2dwbG90KGFlcyhmaWxsID0gb3JnYW8sIHggPSBsZW5ndGgpLCBuYS5ybSA9IFRSVUUpICsgXG4gIGdlb21faGlzdG9ncmFtKGJpbndpZHRoID0gNTAsIG5hLnJtID0gVFJVRSkgKyBcbiAgZmFjZXRfZ3JpZChvcmdhbyB+IC4pXG5gYGAifQ== -->
+<pre class="r"><code>setwd('/home/rerissondcsm/reclamacoes-do-gf')
+
+reclamacoes &lt;- read.csv(&quot;data/1-reclamacoes-selecionadas/reclamacoes-avaliadas.csv&quot;)
+
+reclamacoes &lt;- reclamacoes %&gt;% mutate(length = str_length(reclamacao))
+
+View(reclamacoes)
+
+reclamacoes %&gt;% 
+  filter(complete.cases(.)) %&gt;% 
+  ggplot(aes(fill = orgao, x = length), na.rm = TRUE) + 
+  geom_histogram(binwidth = 50, na.rm = TRUE) + 
+  facet_grid(orgao ~ .)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> Notebook. When you execute code within the notebook, the results appear beneath the code.</p>
 <p>Try executing this chunk by clicking the <em>Run</em> button within the chunk or by placing your cursor inside it and pressing <em>Ctrl+Shift+Enter</em>.</p>
 <!-- rnb-text-end -->
@@ -195,7 +219,7 @@ $(document).ready(function () {
 <p>The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.</p>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKZGVwcyA9IGMoInRpZHl2ZXJzZSIsICJydmVzdCIsICJzdHJpbmdyIiwgImhlcmUiKQppbnN0YWxsLnBhY2thZ2VzKGRlcHMpCmxpYnJhcnkodGlkeXZlcnNlKQoKc2V0d2QoJy9ob21lL3Jlcmlzc29uL0RvY3VtZW50b3MvUmVwb3NpdMOzcmlvcyBHaXQvcmVjbGFtYWNvZXMtZG8tZ2YnKQoKcmVjbGFtYWNvZXMgPC0gcmVhZC5jc3YoInJlY2xhbWFjb2VzLWF2YWxpYWRhcy5jc3YiKQoKcmVjbGFtYWNvZXMgPC0gcmVjbGFtYWNvZXMgJT4lIG11dGF0ZShyZWNsYW1hY2FvLmxlbmd0aCA9IHN0cl9sZW5ndGgocmVjbGFtYWNhbykpCgpWaWV3KHJlY2xhbWFjb2VzKQoKVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gCgpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ3RybCtTaGlmdCtFbnRlciouIAoKYGBge3J9CnBsb3QoY2FycykKYGBgCgpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ3RybCtBbHQrSSouCgpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkN0cmwrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4KClRoZSBwcmV2aWV3IHNob3dzIHlvdSBhIHJlbmRlcmVkIEhUTUwgY29weSBvZiB0aGUgY29udGVudHMgb2YgdGhlIGVkaXRvci4gQ29uc2VxdWVudGx5LCB1bmxpa2UgKktuaXQqLCAqUHJldmlldyogZG9lcyBub3QgcnVuIGFueSBSIGNvZGUgY2h1bmtzLiBJbnN0ZWFkLCB0aGUgb3V0cHV0IG9mIHRoZSBjaHVuayB3aGVuIGl0IHdhcyBsYXN0IHJ1biBpbiB0aGUgZWRpdG9yIGlzIGRpc3BsYXllZC4K</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQpgYGB7cn0KZGVwcyA9IGMoInRpZHl2ZXJzZSIsICJydmVzdCIsICJzdHJpbmdyIiwgImhlcmUiLCAibWFncml0dHIiKQppbnN0YWxsLnBhY2thZ2VzKGRlcHMpCmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KG1hZ3JpdHRyKQpgYGAKCmBgYHtyfQpzZXR3ZCgnL2hvbWUvcmVyaXNzb25kY3NtL3JlY2xhbWFjb2VzLWRvLWdmJykKCnJlY2xhbWFjb2VzIDwtIHJlYWQuY3N2KCJkYXRhLzEtcmVjbGFtYWNvZXMtc2VsZWNpb25hZGFzL3JlY2xhbWFjb2VzLWF2YWxpYWRhcy5jc3YiKQoKcmVjbGFtYWNvZXMgPC0gcmVjbGFtYWNvZXMgJT4lIG11dGF0ZShsZW5ndGggPSBzdHJfbGVuZ3RoKHJlY2xhbWFjYW8pKQoKVmlldyhyZWNsYW1hY29lcykKCnJlY2xhbWFjb2VzICU+JSAKICBmaWx0ZXIoY29tcGxldGUuY2FzZXMoLikpICU+JSAKICBnZ3Bsb3QoYWVzKGZpbGwgPSBvcmdhbywgeCA9IGxlbmd0aCksIG5hLnJtID0gVFJVRSkgKyAKICBnZW9tX2hpc3RvZ3JhbShiaW53aWR0aCA9IDUwLCBuYS5ybSA9IFRSVUUpICsgCiAgZmFjZXRfZ3JpZChvcmdhbyB+IC4pCmBgYAoKVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gCgpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ3RybCtTaGlmdCtFbnRlciouIAoKYGBge3J9CnBsb3QoY2FycykKYGBgCgpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ3RybCtBbHQrSSouCgpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkN0cmwrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4KClRoZSBwcmV2aWV3IHNob3dzIHlvdSBhIHJlbmRlcmVkIEhUTUwgY29weSBvZiB0aGUgY29udGVudHMgb2YgdGhlIGVkaXRvci4gQ29uc2VxdWVudGx5LCB1bmxpa2UgKktuaXQqLCAqUHJldmlldyogZG9lcyBub3QgcnVuIGFueSBSIGNvZGUgY2h1bmtzLiBJbnN0ZWFkLCB0aGUgb3V0cHV0IG9mIHRoZSBjaHVuayB3aGVuIGl0IHdhcyBsYXN0IHJ1biBpbiB0aGUgZWRpdG9yIGlzIGRpc3BsYXllZC4K</div>
 
 
 
