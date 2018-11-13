@@ -7,17 +7,16 @@ deps = c("tidyverse", "rvest", "stringr", "here", "magrittr")
 install.packages(deps)
 library(tidyverse)
 library(magrittr)
+library(ggplot2)
 ```
 
 ```{r}
 setwd('/home/rerissondcsm/reclamacoes-do-gf')
-
 reclamacoes <- read.csv("data/1-reclamacoes-selecionadas/reclamacoes-avaliadas.csv")
-
 reclamacoes <- reclamacoes %>% mutate(length = str_length(reclamacao))
+```
 
-View(reclamacoes)
-
+```{r}
 reclamacoes %>% 
   filter(complete.cases(.)) %>% 
   ggplot(aes(fill = orgao, x = length), na.rm = TRUE) + 
