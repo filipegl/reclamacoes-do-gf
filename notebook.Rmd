@@ -3,12 +3,11 @@ title: "R Notebook"
 output: html_notebook
 ---
 ```{r}
-deps = c("tidyverse", "rvest", "stringr", "here", "magrittr", "dplyr")
+deps = c("tidyverse", "rvest", "stringr", "here", "magrittr")
 install.packages(deps)
 library(tidyverse)
 library(magrittr)
 library(ggplot2)
-library(dplyr)
 ```
 
 ```{r}
@@ -28,6 +27,19 @@ media_orgaos <- aggregate(reclamacoes$length, list(orgao = reclamacoes$orgao), m
 media_orgaos %>% View
 barplot(media_orgaos$x, main='Média dos tamanhos das reclamações por orgão', names.arg = media_orgaos$orgao)
 ```
+```{r}
+x <- rep(1:5, each=7)
+y <- rnorm(10*7)
+boxplot(length~mediana,data=reclamacoes,col=rainbow(length(unique(x))), main="Média das reclamações por nível de insatisfação",
+   xlab="Nível de insatisfação", ylab="Tamanho das reclamações") 
+
+agrupar <- reclamacoes %>% group_by(reclamacoes$mediana) %>% summarise(media = mean(length)) 
+
+barplot(agrupar$media, names = agrupar$mediana,
+  xlab = "Nível de insatisfação", ylab = "Tamanho das reclamações",
+  main = "Média das reclamações por nível de insatisfação")
+```
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
 
 
@@ -43,6 +55,10 @@ avaliacoes %>%
 
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
 
