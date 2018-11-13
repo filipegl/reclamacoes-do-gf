@@ -21,7 +21,7 @@ reclamacoes <- reclamacoes %>% mutate(length = str_length(reclamacao))
 
 media_orgaos <- aggregate(reclamacoes$length, list(orgao = reclamacoes$orgao), mean)
 media_orgaos %>% View
-
+barplot(media_orgaos$x, main='Média dos tamanhos das reclamações por orgão', names.arg = media_orgaos$orgao)
 ```
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
