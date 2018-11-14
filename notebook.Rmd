@@ -11,8 +11,24 @@ library(ggplot2)
 library(dplyr)
 ```
 
+##Questão 1
 ```{r}
-setwd('/home/filipegl/Documentos/metodologia/reclamacoes-do-gf')
+
+media_orgaos <- aggregate(reclamacoes$length, list(orgao = reclamacoes$orgao), mean)
+media_orgaos %>% View
+barplot(media_orgaos$x, main='Média dos tamanhos das reclamações por orgão', names.arg = media_orgaos$orgao)
+```
+Podemos perceber
+
+##Questão 2
+```{r}
+
+```
+
+
+
+```{r}
+setwd('/home/rerisson/Documentos/Repositórios Git/reclamacoes-do-gf')
 reclamacoes <- read.csv("data/1-reclamacoes-selecionadas/reclamacoes-avaliadas.csv")
 reclamacoes <- reclamacoes %>% mutate(length = str_length(reclamacao))
 avaliacoes <- read_csv("data/3-avaliacao-humana/avaliacoes-20180610.csv")
@@ -22,12 +38,7 @@ avaliacoes <- avaliacoes %>%
                       insatisfacao = `Grau de insatisfação`)
 ```
 
-```{r}
 
-media_orgaos <- aggregate(reclamacoes$length, list(orgao = reclamacoes$orgao), mean)
-media_orgaos %>% View
-barplot(media_orgaos$x, main='Média dos tamanhos das reclamações por orgão', names.arg = media_orgaos$orgao)
-```
 ```{r}
 x <- rep(1:5, each=7)
 y <- rnorm(10*7)
@@ -56,10 +67,6 @@ avaliacoes %>%
 
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
-
-```{r}
-plot(cars)
-```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
 
