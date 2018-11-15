@@ -14,12 +14,11 @@ library(readr)
 
 ##Questão 1
 ```{r}
-
 media_orgaos <- aggregate(reclamacoes$length, list(orgao = reclamacoes$orgao), mean)
-media_orgaos %>% View
-barplot(media_orgaos$x, main='Média dos tamanhos das reclamações por orgão', names.arg = media_orgaos$orgao)
+
+barplot(media_orgaos$x, main='Média dos tamanhos das reclamações por orgão', names.arg = c("Anac", "INSS"))
 ```
-Podemos perceber
+Podemos perceber que o tamanho das reclamações direcionadas à ANAC são em média muito maiores. Posteriormente pretendemos relacionar neste estudo o tamanho das reclamações com a insatisfação associada a elas no experimento humano e na análise de sentimentos.
 
 ##Questão 2
 ```{r}
@@ -52,7 +51,7 @@ barplot(agrupar$media, names = agrupar$mediana,
   xlab = "Nível de insatisfação", ylab = "Tamanho das reclamações",
   main = "Média das reclamações por nível de insatisfação")
 ```
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
 
 ##  Questao 3
 ```{r}
