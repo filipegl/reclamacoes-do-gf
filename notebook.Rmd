@@ -36,9 +36,10 @@ Podemos perceber que o tamanho das reclamações direcionadas à ANAC são em m�
 
 ##Questão 2
 ```{r}
-media_orgaos <- aggregate(reclamacoes$mediana, list(orgao = reclamacoes$orgao), mean)
-barplot(media_orgaos$x, main='Média dos tamanhos das reclamações por orgão', names.arg = c("Anac", "INSS"))
+mediana_orgaos <- aggregate(reclamacoes$mediana, list(orgao = reclamacoes$orgao), mean)
+barplot(mediana_orgaos$x, main='Mediana da insatisfação das reclamações por orgão', names.arg = c("Anac", "INSS"))
 ```
+Aqui vemos que a mediana da insatisfação da Anac é um pouco maior que o do INSS. Isso indica que as reclamações da Anac tendem a demonstrar maior insatisfação. Talvez o fato de as reclamações para a Anac serem maiores influencie a percepção da insatisfação pelos examinadores.
 
 
 ```{r}
