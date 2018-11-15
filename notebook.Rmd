@@ -61,18 +61,7 @@ barplot(mediana_orgaos$x, main='Mediana da insatisfação das reclamações por 
 Aqui vemos que a mediana da insatisfação da Anac é um pouco maior que o do INSS. Isso indica que as reclamações da Anac tendem a demonstrar maior insatisfação. Talvez o fato de as reclamações para a Anac serem maiores influencie a percepção da insatisfação pelos examinadores.
 
 
-```{r}
-x <- rep(1:5, each=7)
-y <- rnorm(10*7)
-boxplot(length~mediana,data=reclamacoes,col=rainbow(length(unique(x))), main="Média das reclamações por nível de insatisfação",
-   xlab="Nível de insatisfação", ylab="Tamanho das reclamações") 
 
-agrupar <- reclamacoes %>% group_by(reclamacoes$mediana) %>% summarise(media = mean(length)) 
-
-barplot(agrupar$media, names = agrupar$mediana,col=rainbow(length(unique(x))),
-  xlab = "Nível de insatisfação", ylab = "Tamanho das reclamações",
-  main = "Média das reclamações por nível de insatisfação")
-```
 
 
 ##  Questao 3
@@ -89,6 +78,22 @@ avaliacoes %>%
   count() %>%
   ungroup() %>% 
   summarise(media = mean(n))
+```
+
+
+#Questão 9 
+
+```{r}
+x <- rep(1:5, each=7)
+y <- rnorm(10*7)
+boxplot(length~mediana,data=reclamacoes,col=rainbow(length(unique(x))), main="Média das reclamações por nível de insatisfação",
+   xlab="Nível de insatisfação", ylab="Tamanho das reclamações") 
+
+agrupar <- reclamacoes %>% group_by(reclamacoes$mediana) %>% summarise(media = mean(length)) 
+
+barplot(agrupar$media, names = agrupar$mediana,col=rainbow(length(unique(x))),
+  xlab = "Nível de insatisfação", ylab = "Tamanho das reclamações",
+  main = "Média das reclamações por nível de insatisfação")
 ```
 
 #Questão 10
