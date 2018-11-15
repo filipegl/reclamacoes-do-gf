@@ -18,7 +18,6 @@ setwd('/home/rerisson/Documentos/Repositórios Git/reclamacoes-do-gf')
 reclamacoes <- read.csv('data/1-reclamacoes-selecionadas/reclamacoes-avaliadas.csv')
 reclamacoes <- reclamacoes %>% mutate(length = str_length(reclamacao))
 avaliacoes <- read_csv('data/3-avaliacao-humana/avaliacoes-20180610.csv')
-View(avaliacoes)
 avaliacoes <- avaliacoes %>% 
               select(avaliador = 'Matricula', 
                       id = 'ID da reclamação', 
@@ -33,10 +32,12 @@ barplot(media_orgaos$x, main='Média dos tamanhos das reclamações por orgão',
 ```
 Podemos perceber que o tamanho das reclamações direcionadas à ANAC são em média muito maiores. Posteriormente pretendemos relacionar neste estudo o tamanho das reclamações com a insatisfação associada a elas no experimento humano e na análise de sentimentos.
 
+
+
 ##Questão 2
 ```{r}
-View(avaliacoes)
-
+media_orgaos <- aggregate(reclamacoes$mediana, list(orgao = reclamacoes$orgao), mean)
+barplot(media_orgaos$x, main='Média dos tamanhos das reclamações por orgão', names.arg = c("Anac", "INSS"))
 ```
 
 
