@@ -3,7 +3,7 @@ title: "R Notebook"
 output: html_notebook
 ---
 ```{r}
-deps = c("tidyverse", "rvest", "stringr", "here", "magrittr", "dplyr", "readr")
+deps = c("tidyverse", "rvest", "stringr", "here", "magrittr", "dplyr", "readr","janitor")
 install.packages(deps)
 library(tidyverse)
 library(magrittr)
@@ -12,9 +12,13 @@ library(dplyr)
 library(readr)
 ```
 
-
 ```{r}
 setwd('/home/rerisson/Documentos/Repositórios Git/reclamacoes-do-gf')
+```
+
+
+```{r}
+
 reclamacoes <- read.csv('data/1-reclamacoes-selecionadas/reclamacoes-avaliadas.csv')
 reclamacoes <- reclamacoes %>% mutate(length = str_length(reclamacao))
 avaliacoes <- read_csv('data/3-avaliacao-humana/avaliacoes-20180610.csv')
@@ -22,6 +26,21 @@ avaliacoes <- avaliacoes %>%
               select(avaliador = 'Matricula', 
                       id = 'ID da reclamação', 
                       insatisfacao = 'Grau de insatisfação')
+
+```
+
+```{r}
+
+reclamacoes$reclamacao <- gsub("[[:punct:]]", "", reclamacoes$reclamacao)
+reclamacoes$reclamacao <- gsub("\\n", "", reclamacoes$reclamacao)
+reclamacoes$titulo <- gsub("[[:punct:]]", "", reclamacoes$titulo)
+
+reclamacoes$palavras <- str_split(paste(reclamacoes$reclamacao, reclamacoes$titulo, sep=" "), " ")
+
+
+reclamacoes$palavras <- sapply(reclamacoes$palavras, tolower)
+
+
 ```
 
 ##Questão 1
@@ -50,7 +69,7 @@ boxplot(length~mediana,data=reclamacoes,col=rainbow(length(unique(x))), main="M�
 
 agrupar <- reclamacoes %>% group_by(reclamacoes$mediana) %>% summarise(media = mean(length)) 
 
-barplot(agrupar$media, names = agrupar$mediana,
+barplot(agrupar$media, names = agrupar$mediana,col=rainbow(length(unique(x))),
   xlab = "Nível de insatisfação", ylab = "Tamanho das reclamações",
   main = "Média das reclamações por nível de insatisfação")
 ```
@@ -70,6 +89,23 @@ avaliacoes %>%
   count() %>%
   ungroup() %>% 
   summarise(media = mean(n))
+```
+
+#Questão 10
+
+```{r}
+reclamacoes$palavras_negativas <- str_count(reclamacoes$palavras, "não|pior|piores|ruim|horrível|reclamação|triste|indignação|nenhuma|merda|porcaria|péssimo|infelizmente|nenhuma|nunca|nenhum|nada")
+x <- rep(1:5, each=7)
+y <- rnorm(10*7)
+boxplot(palavras_negativas~mediana,data=reclamacoes,col=rainbow(length(unique(x))), main="Média das reclamações por nível de insatisfação",
+   xlab="Nível de insatisfação", ylab="Tamanho das reclamações") 
+
+agrupar <- reclamacoes %>% group_by(reclamacoes$mediana) %>% summarise(media = mean(palavras_negativas)) 
+
+barplot(agrupar$media, names = agrupar$mediana,col=rainbow(length(unique(x))),
+  xlab = "Nível de insatisfação", ylab = "Média das palavras negativas",
+  main = "Média das reclamações por nível de insatisfação")
+
 ```
 
 
