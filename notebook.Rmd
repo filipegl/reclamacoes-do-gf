@@ -12,6 +12,19 @@ library(dplyr)
 library(readr)
 ```
 
+
+```{r}
+setwd('/home/rerisson/Documentos/Repositórios Git/reclamacoes-do-gf')
+reclamacoes <- read.csv('data/1-reclamacoes-selecionadas/reclamacoes-avaliadas.csv')
+reclamacoes <- reclamacoes %>% mutate(length = str_length(reclamacao))
+avaliacoes <- read_csv('data/3-avaliacao-humana/avaliacoes-20180610.csv')
+View(avaliacoes)
+avaliacoes <- avaliacoes %>% 
+              select(avaliador = 'Matricula', 
+                      id = 'ID da reclamação', 
+                      insatisfacao = 'Grau de insatisfação')
+```
+
 ##Questão 1
 ```{r}
 media_orgaos <- aggregate(reclamacoes$length, list(orgao = reclamacoes$orgao), mean)
@@ -22,20 +35,8 @@ Podemos perceber que o tamanho das reclamações direcionadas à ANAC são em m�
 
 ##Questão 2
 ```{r}
+View(avaliacoes)
 
-```
-
-
-
-```{r}
-setwd('/home/filipegl/Documentos/metodologia/reclamacoes-do-gf')
-reclamacoes <- read.csv("data/1-reclamacoes-selecionadas/reclamacoes-avaliadas.csv")
-reclamacoes <- reclamacoes %>% mutate(length = str_length(reclamacao))
-avaliacoes <- read_csv("data/3-avaliacao-humana/avaliacoes-20180610.csv")
-avaliacoes <- avaliacoes %>% 
-              select(avaliador = `Matricula`, 
-                      id = `ID da reclamação`, 
-                      insatisfacao = `Grau de insatisfação`)
 ```
 
 
