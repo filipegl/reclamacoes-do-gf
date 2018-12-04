@@ -79,7 +79,20 @@ avaliacoes %>%
   ungroup() %>% 
   summarise(media = mean(n))
 ```
+#Questão 7
+```{r}
+avaliacoes %>% group_by(`ID da reclamação`) %>% 
+  summarise(range = max(`Grau de insatisfação`) - min(`Grau de insatisfação`)) %>% 
+  filter(range > 2) %>% count()
 
+```
+
+#QUestão 8
+```{r}
+reclamacoes %>% ggplot(aes(x=mediana, y=str_length(reclamacao))) + geom_point()
+reclamacoes %>% ggplot(aes(x=mediana, y=str_length(titulo))) + geom_point()
+
+```
 
 #Questão 9 
 
