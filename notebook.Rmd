@@ -79,6 +79,23 @@ avaliacoes %>%
   ungroup() %>% 
   summarise(media = mean(n))
 ```
+## Questao 5
+```{r}
+avaliacoes %>% 
+  group_by(id) %>% 
+  summarize(count=n(())%>%
+  ggplot(aes(x=reorder(id, count), y=count)) + geom_bar(stat = "identity")
+```
+## Questao 6
+```{r}
+avaliacoes %>% 
+  group_by(id) %>% 
+  summarise(dv = sd(insatisfacao)) %>%
+  ggplot(aes(x=id,  y=dv, colour=id) + geom_point() +
+  geom_jitter(height = 0.05, alpha = .4)
+  
+```
+
 #Questão 7
 ```{r}
 avaliacoes %>% group_by(`ID da reclamação`) %>% 
