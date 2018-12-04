@@ -1,6 +1,8 @@
 ---
 title: "R Notebook"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 ```{r}
 deps = c("tidyverse", "rvest", "stringr", "here", "magrittr", "dplyr", "readr","janitor")
@@ -13,7 +15,7 @@ library(readr)
 ```
 
 ```{r}
-setwd('/home/rerisson/Documentos/Repositórios Git/reclamacoes-do-gf')
+setwd('/home/pedrofw/Documentos/reclamacoes-do-gf')
 ```
 
 
@@ -43,35 +45,38 @@ reclamacoes$palavras <- sapply(reclamacoes$palavras, tolower)
 
 ```
 
-##Questão 1
+##Questão 1: Qual a média do tamanho das reclamações para os dois órgãos?
 ```{r}
 media_orgaos <- aggregate(reclamacoes$length, list(orgao = reclamacoes$orgao), mean)
 
 barplot(media_orgaos$x, main='Média dos tamanhos das reclamações por orgão', names.arg = c("Anac", "INSS"))
 ```
-Podemos perceber que o tamanho das reclamações direcionadas à ANAC são em média muito maiores. Posteriormente pretendemos relacionar neste estudo o tamanho das reclamações com a insatisfação associada a elas no experimento humano e na análise de sentimentos.
+*Podemos perceber que o tamanho das reclamações direcionadas à ANAC são em média muito maiores. Posteriormente pretendemos relacionar neste estudo o tamanho das reclamações com a insatisfação associada a elas no experimento humano e na análise de sentimentos.*
 
 
 
-##Questão 2
+##Questão 2: Que órgão promove maior insatisfação, de acordo com a análise realizada no experimento humano?
 ```{r}
 mediana_orgaos <- aggregate(reclamacoes$mediana, list(orgao = reclamacoes$orgao), mean)
 barplot(mediana_orgaos$x, main='Mediana da insatisfação das reclamações por orgão', names.arg = c("Anac", "INSS"))
 ```
-Aqui vemos que a mediana da insatisfação da Anac é um pouco maior que o do INSS. Isso indica que as reclamações da Anac tendem a demonstrar maior insatisfação. Talvez o fato de as reclamações para a Anac serem maiores influencie a percepção da insatisfação pelos examinadores.
+*Aqui vemos que a mediana da insatisfação da Anac é um pouco maior que o do INSS. Isso indica que as reclamações da Anac tendem a demonstrar maior insatisfação. Talvez o fato de as reclamações para a Anac serem maiores influencie a percepção da insatisfação pelos examinadores.*
 
 
 
 
 
-##  Questao 3
+##  Questao 3: Alguma avaliação foge de 1 a 5? 
+
 ```{r}
 avaliacoes %>% 
   filter((insatisfacao > 5 | insatisfacao < 1))
 ```
+*De acordo com o filtro usado, não foi achado nenhuma linha tal que a condição (insatisfação maior que 5 ou menor que 1) fosse verdadeira.*
 
 
-## Questao 4
+## Questao 4: Em média, quantas avaliações foram feitas por reclamação? 
+
 ```{r}
 avaliacoes %>% 
   group_by(id) %>% 
@@ -79,54 +84,48 @@ avaliacoes %>%
   ungroup() %>% 
   summarise(media = mean(n))
 ```
-## Questao 5
+*De acordo com o resultado abaixo, cada reclamação tem uma média de 5,3 avaliações.*
+
+## Questao 5: Mostrar número de revisores por reclamação.
 ```{r}
 avaliacoes %>% 
   group_by(id) %>% 
-  summarize(count=n(())%>%
+  summarize(count=n())%>%
   ggplot(aes(x=reorder(id, count), y=count)) + geom_bar(stat = "identity")
 ```
-## Questao 6
+*De acordo com a imagem do resultado, teve no mínimo 3 revisores e no máximo 7, a maioria das reclamações teve 5 revisores.*
+
+## Questao 6: Será que há consenso entre as avaliações de cada reclamação? 
 ```{r}
 avaliacoes %>% 
   group_by(id) %>% 
   summarise(dv = sd(insatisfacao)) %>%
-  ggplot(aes(x=id,  y=dv, colour=id) + geom_point() +
+  ggplot(aes(x=id,  y=dv, colour=id)) + geom_point() +
   geom_jitter(height = 0.05, alpha = .4)
   
 ```
+*Diante do gráfico resultante obtido através do desvio padrão temos que a maioria das avaliações teve desvio padrão abaixo de 1, o que mostra um bom consenso, mas que em alguns casos houve pouca discordância.*
 
-#Questão 7
+
+#Questão 7: Quantas reclamações têm discordância maior que 2?
 ```{r}
-avaliacoes %>% group_by(`ID da reclamação`) %>% 
-  summarise(range = max(`Grau de insatisfação`) - min(`Grau de insatisfação`)) %>% 
+avaliacoes %>% group_by(id) %>% 
+  summarise(range = max(insatisfacao) - min(insatisfacao)) %>% 
   filter(range > 2) %>% count()
 
 ```
+*Segundo a análise, 11 reclamações apresentaram tal discordância.*
 
-#QUestão 8
+##Questão 8: O tamanho das reclamações têm relação com o nível de insatisfação obtida no experimento humano? 
 ```{r}
 reclamacoes %>% ggplot(aes(x=mediana, y=str_length(reclamacao))) + geom_point()
 reclamacoes %>% ggplot(aes(x=mediana, y=str_length(titulo))) + geom_point()
 
 ```
+*De acordo com o gráfico acima parece ter uma tendência de que quanto maior o nível de insatisfação maior é o tamanho médio das reclamações.*
 
-#Questão 9 
 
-```{r}
-x <- rep(1:5, each=7)
-y <- rnorm(10*7)
-boxplot(length~mediana,data=reclamacoes,col=rainbow(length(unique(x))), main="Média das reclamações por nível de insatisfação",
-   xlab="Nível de insatisfação", ylab="Tamanho das reclamações") 
-
-agrupar <- reclamacoes %>% group_by(reclamacoes$mediana) %>% summarise(media = mean(length)) 
-
-barplot(agrupar$media, names = agrupar$mediana,col=rainbow(length(unique(x))),
-  xlab = "Nível de insatisfação", ylab = "Tamanho das reclamações",
-  main = "Média das reclamações por nível de insatisfação")
-```
-
-#Questão 10
+##Questão 9: A quantidade de palavras negativas em cada reclamação (ex: “não”) tem relação com o nível de insatisfação?
 
 ```{r}
 reclamacoes$palavras_negativas <- str_count(reclamacoes$palavras, "não|pior|piores|ruim|horrível|reclamação|triste|indignação|nenhuma|merda|porcaria|péssimo|infelizmente|nenhuma|nunca|nenhum|nada")
@@ -143,6 +142,10 @@ barplot(agrupar$media, names = agrupar$mediana,col=rainbow(length(unique(x))),
 
 ```
 
+*Sim, podemos ver no gráfico acima que a quantidade de palavras negativas está relacionado com o nível de insatisfação da reclamação.*
+
+
+
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
 
@@ -151,3 +154,4 @@ Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by press
 When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
 
 The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
